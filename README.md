@@ -9,11 +9,7 @@ A Retrieval Augmented Generation (RAG) application that lets users ask questions
 
 ### Custom feature: Ask a specific speaker
 
-The RAG panel has a speaker dropdown that limits answers to one speaker's talks.
-
-- `speaker_key()` cleans raw names (`By Elder Henry B. Eyring` → `Henry B. Eyring`), merging 189 spellings into 168 people. "Presented by" items (sustainings, reports) are excluded.
-- `match_sentences_by_speaker()` filters to the speaker's sentences *before* ranking by similarity, which avoids the HNSW post-filtering problem.
-- `list_speakers()` fills the dropdown after login; RLS returns nothing to logged-out visitors.
+This feature adds a speaker dropdown to the Ask a Question (RAG) panel, so you can filter by your favorite speaker and ask questions specifically about the things they have said. It also cleans the speaker names by removing "By" and titles such as Elder and President, so the same person is not listed more than once (189 spellings became 168 people). Items labeled "Presented by," such as the sustaining of officers and audit reports, are left out because they are not talks. The search also filters by speaker first. If it searched everyone first and filtered by speaker afterward, some speakers would get no results: when asking about peace, none of the 40 closest sentences were by Oaks, even though Oaks has spoken about peace. Filtering first limits the search to Oaks's sentences and then finds the closest ones among them, so his talks about peace show up.
 
 SQL: [`scripts/06_add_speaker_filter.py`](scripts/06_add_speaker_filter.py)
 
