@@ -2,6 +2,29 @@
 
 A Retrieval Augmented Generation (RAG) application that lets users ask questions about General Conference talks using semantic search and AI-generated answers.
 
+## 📌 My Deployment
+
+- **Live site:** https://jocelynperucca.github.io/conference-rag/
+- **Repository:** https://github.com/jocelynperucca/conference-rag
+
+### Custom feature: Ask a specific speaker
+
+The RAG panel has a speaker dropdown that limits answers to one speaker's talks.
+
+- `speaker_key()` cleans raw names (`By Elder Henry B. Eyring` → `Henry B. Eyring`), merging 189 spellings into 168 people. "Presented by" items (sustainings, reports) are excluded.
+- `match_sentences_by_speaker()` filters to the speaker's sentences *before* ranking by similarity, which avoids the HNSW post-filtering problem.
+- `list_speakers()` fills the dropdown after login; RLS returns nothing to logged-out visitors.
+
+SQL: [`scripts/06_add_speaker_filter.py`](scripts/06_add_speaker_filter.py)
+
+<p align="center">
+  <img src="screenshots/rag-speaker-filter.webp" alt="RAG answer limited to Dallin H. Oaks's talks" width="600">
+  <br>
+  <em>RAG answer to "How can I find peace during hard times?" limited to Dallin H. Oaks</em>
+</p>
+
+---
+
 <p align="center">
   <img src="example.png" alt="Conference RAG screenshot" width="600">
   <br>
