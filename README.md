@@ -25,12 +25,6 @@ SQL: [`scripts/06_add_speaker_filter.py`](scripts/06_add_speaker_filter.py)
 
 ---
 
-<p align="center">
-  <img src="example.png" alt="Conference RAG screenshot" width="600">
-  <br>
-  <em>Sample screenshot — semantic search with AI-generated answers</em>
-</p>
-
 ## 🚀 Quick Start
 
 Follow the step-by-step guides in the `steps/` folder:
